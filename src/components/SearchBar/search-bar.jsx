@@ -13,19 +13,21 @@ const SearchBar = ({ onSearch }) => {
 
   return (
     <header className={styles.header}>
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <input
-          type="text"
-          className={styles.input}
-          value={query}
-          onChange={event => setQuery(event.target.value)}
-          placeholder="Search GIFs..."
-        />
+      <search>
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <input
+            type="search"
+            className={styles.input}
+            value={query}
+            onChange={event => setQuery(event.target.value)}
+            placeholder="Search GIFs..."
+          />
 
-        <button type="submit" className={styles.button}>
-          Search
-        </button>
-      </form>
+          <button type="submit" className={styles.button}>
+            Search
+          </button>
+        </form>
+      </search>
     </header>
   );
 };
