@@ -1,0 +1,14 @@
+.listGifs {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    align-items: start;
+}
+
+.empty {
+    text-align: center;
+    padding: 40px;
+    color: #888;
+    font-size: 18px;
+}
