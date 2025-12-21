@@ -1,5 +1,12 @@
 import axios from 'axios';
-import { BASE_URL, GIPHY_API_KEY, LIMIT_GIF } from '../lib/constants.js';
+
+import { BASE_URL, GIPHY_API_KEY, LIMIT_GIF } from '../lib/constants.ts';
+
+import {
+  GiphyResponseSchema,
+  type INormalizedGif,
+  normalizeGif,
+} from '../schema/api.ts';
 
 const api = axios.create({
   baseURL: BASE_URL,
@@ -8,7 +15,9 @@ const api = axios.create({
   },
 });
 
-export const querySearchGifs = async query => {
+export const querySearchGifs = async (
+  query: string
+): Promise<INormalizedGif[]> => {
   try {
     const response = await api.get('/search', {
       params: {
@@ -18,7 +27,8 @@ export const querySearchGifs = async query => {
       },
     });
 
-    return response.data.data;
+    const parsedData = GiphyResponseSchema.parse(response.data);
+    return parsedData.data.map(normalizeGif);
   } catch (error) {
     console.error('Error fetching GIFs:', error);
     throw error;

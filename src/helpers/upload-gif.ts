@@ -1,4 +1,7 @@
-export const uploadGif = async (url, filename) => {
+export const uploadGif = async (
+  url: string,
+  filename: string
+): Promise<void> => {
   try {
     const response = await fetch(url);
     const blob = await response.blob();
